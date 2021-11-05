@@ -10,7 +10,7 @@ function Greeting({initialName = ''}) {
 
   React.useEffect(() => {
     window.localStorage.setItem(localStorageKey, name)
-  })
+  }, [name])
 
   function handleChange(event) {
     setName(event.target.value)

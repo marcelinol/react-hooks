@@ -5,8 +5,7 @@ import * as React from 'react'
 
 function Greeting({initialName = ''}) {
   const localStorageKey = 'name'
-  const defineInitialName = () => window.localStorage.getItem(localStorageKey) || initialName
-  const [name, setName] = React.useState(defineInitialName)
+  const [name, setName] = React.useState(() => window.localStorage.getItem(localStorageKey) || initialName)
 
   React.useEffect(() => {
     window.localStorage.setItem(localStorageKey, name)
