@@ -65,3 +65,32 @@ test('game restarts', () => {
 
   expect(square1).toHaveTextContent('')
 })
+
+
+test('handles a tie', () => {
+  render(<App />)
+  // prettier-ignore
+  const [
+    s1, s2, s3,
+    s4, s5, s6,
+    s7, s8, s9
+  ] = Array.from(screen.queryAllByRole('button'))
+  expect(screen.getByText('Next player: X')).toBeInTheDocument()
+
+  // [
+  //   X, X, O,
+  //   O, O, X,
+  //   X, O, X
+  // ]
+  userEvent.click(s1)
+  userEvent.click(s4)
+  userEvent.click(s2)
+  userEvent.click(s5)
+  userEvent.click(s6)
+  userEvent.click(s3)
+  userEvent.click(s7)
+  userEvent.click(s8)
+  userEvent.click(s9)
+
+  expect(screen.getByText("Scratch: Cat's game")).toBeInTheDocument()
+})
